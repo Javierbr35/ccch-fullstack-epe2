@@ -1,0 +1,10 @@
+﻿# Python / Django
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
