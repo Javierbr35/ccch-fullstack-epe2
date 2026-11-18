@@ -1,1 +1,6 @@
-<p>investigador-card works!</p>
+﻿<article class="inv-card">
+  <div class="inv-header"><div class="avatar">{{ obtenerIniciales(investigador().nombre_completo) }}</div><div class="inv-meta"><span class="grado-badge">{{ investigador().grado_academico }}</span><h3>{{ investigador().nombre_completo }}</h3><p class="institucion">{{ investigador().institucion }}</p></div></div>
+  <p class="especialidad">{{ investigador().especialidad }}</p>
+  <p class="bio">{{ investigador().biografia || 'Investigador acreditado de la red CCCh.' }}</p>
+  <div class="inv-footer">@if (investigador().orcid) { <span class="orcid-tag">ORCID: {{ investigador().orcid }}</span> }<a [href]="'mailto:' + investigador().correo" class="mail-link">Contactar</a></div>
+</article>

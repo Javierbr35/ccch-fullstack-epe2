@@ -1,1 +1,7 @@
-<p>publicacion-card works!</p>
+﻿<article class="pub-card">
+  <div class="pub-header"><span class="anio-badge">{{ publicacion().anio_publicacion }}</span><span class="revista">{{ publicacion().revista_o_congreso }}</span></div>
+  <h3>{{ publicacion().titulo }}</h3>
+  <p class="autor">Autor principal: <strong>{{ publicacion().autor_principal }}</strong></p>
+  <p class="abstract">{{ publicacion().resumen_abstract }}</p>
+  <div class="pub-footer"><span class="doi">DOI: {{ publicacion().doi }}</span>@if (publicacion().url_documento) { <a [href]="publicacion().url_documento" target="_blank" rel="noopener" class="doi-btn">Ver artículo ↗</a> }</div>
+</article>

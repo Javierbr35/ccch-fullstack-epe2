@@ -1,10 +1,11 @@
-﻿# Python / Django
-venv/
+﻿venv/
 __pycache__/
-*.pyc
+*.py[cod]
+*.sqlite3
 .env
-
-# Angular / Node
 node_modules/
-dist/
-.angular/
+frontend-angular/.angular/
+frontend-angular/dist/
+.vscode/
+.DS_Store
+Thumbs.db

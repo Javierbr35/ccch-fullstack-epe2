@@ -1,1 +1,11 @@
-<p>ciencia-accesible works!</p>
+﻿<div class="accesible-grid">
+  @for (item of recursos; track item.titulo; let i = $index) {
+    <article class="accesible-card" [class.activo]="recursoActivo() === i">
+      <span class="cat-badge">{{ item.categoria }}</span>
+      <h3>{{ item.titulo }}</h3>
+      <p>{{ item.descripcion }}</p>
+      @if (recursoActivo() === i) { <div class="detalle-box">{{ item.detalle }}</div> }
+      <button type="button" class="toggle-btn" (click)="alternarDetalle(i)">{{ recursoActivo() === i ? 'Ocultar modalidad ▲' : 'Ver modalidad ▼' }}</button>
+    </article>
+  }
+</div>

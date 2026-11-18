@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad Científica de Chile (CCCh) — Backend Django + PostgreSQL</title>
+    <style>
+        :root {
+            --bg-primary: #070d19;
+            --bg-card: #0f172a;
+            --bg-card-alt: #131f38;
+            --border: rgba(56, 189, 248, 0.22);
+            --accent: #38bdf8;
+            --accent-green: #10b981;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        header {
+            background: rgba(15, 23, 42, 0.92);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .brand {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.4px;
+        }
+        .brand span { color: var(--text-main); font-weight: 400; }
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 1.25rem;
+            font-size: 0.92rem;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--accent); }
+        .btn-admin {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent) !important;
+            border: 1px solid var(--accent);
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #162447 100%);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2.2rem;
+            margin-bottom: 2rem;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        h1 { font-size: 1.9rem; margin-bottom: 0.5rem; }
+        .hero p { color: var(--text-muted); max-width: 760px; }
+        .kpis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.4rem;
+        }
+        .kpi-number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+        .kpi-label { color: var(--text-muted); font-size: 0.9rem; }
+        section { margin-bottom: 2.8rem; }
+        h2 {
+            font-size: 1.35rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--accent);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 1.2rem;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.4rem;
+        }
+        .card h3 { font-size: 1.08rem; margin-bottom: 0.4rem; color: var(--text-main); }
+        .meta { font-size: 0.85rem; color: var(--accent-green); margin-bottom: 0.6rem; }
+        .desc { font-size: 0.92rem; color: var(--text-muted); }
+        .tag {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-size: 0.78rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            background: var(--bg-card-alt);
+            color: var(--accent);
+            border: 1px solid var(--border);
+        }
+        .empty {
+            background: var(--bg-card);
+            border: 1px dashed var(--border);
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: var(--text-muted);
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">CCCh <span>| Comunidad Científica de Chile</span></div>
+        <nav>
+            <a href="#investigadores">Investigadores</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#publicaciones">Publicaciones</a>
+            <a href="/api/resumen/" target="_blank">API JSON</a>
+            <a href="/admin/" class="btn-admin">Panel Admin</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="hero">
+            <span class="badge">● Conectado a PostgreSQL (ccch_db) vía Django ORM</span>
+            <h1>Núcleo de Investigación y Divulgación Científica</h1>
+            <p>Plataforma académica para la gestión de investigadores, proyectos interdisciplinarios y publicaciones indexadas en Chile.</p>
+        </div>
+
+        <div class="kpis">
+            <div class="kpi-card">
+                <div class="kpi-number">{{ total_investigadores }}</div>
+                <div class="kpi-label">Investigadores Activos</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-number">{{ total_proyectos }}</div>
+                <div class="kpi-label">Proyectos Registrados</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-number">{{ total_publicaciones }}</div>
+                <div class="kpi-label">Publicaciones Científicas</div>
+            </div>
+        </div>
+
+        <section id="investigadores">
+            <h2>Investigadores Acreditados</h2>
+            {% if investigadores %}
+            <div class="grid">
+                {% for inv in investigadores %}
+                <article class="card">
+                    <h3>{{ inv.nombre_completo }}</h3>
+                    <div class="meta">{{ inv.get_grado_academico_display }} · {{ inv.institucion }}</div>
+                    <p class="desc">{{ inv.biografia|default:inv.especialidad }}</p>
+                    <span class="tag">{{ inv.especialidad }}</span>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty">Aún no hay investigadores cargados en PostgreSQL.</div>
+            {% endif %}
+        </section>
+
+        <section id="proyectos">
+            <h2>Proyectos de Investigación</h2>
+            {% if proyectos %}
+            <div class="grid">
+                {% for proy in proyectos %}
+                <article class="card">
+                    <h3>[{{ proy.codigo }}] {{ proy.titulo }}</h3>
+                    <div class="meta">{{ proy.get_area_cientifica_display }} · {{ proy.get_estado_display }}</div>
+                    <p class="desc">{{ proy.resumen }}</p>
+                    <span class="tag">Dirige: {{ proy.investigador_principal.nombre_completo }}</span>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty">Aún no hay proyectos registrados en PostgreSQL.</div>
+            {% endif %}
+        </section>
+
+        <section id="publicaciones">
+            <h2>Publicaciones Científicas</h2>
+            {% if publicaciones %}
+            <div class="grid">
+                {% for pub in publicaciones %}
+                <article class="card">
+                    <h3>{{ pub.titulo }}</h3>
+                    <div class="meta">{{ pub.revista_o_congreso }} ({{ pub.anio_publicacion }})</div>
+                    <p class="desc">{{ pub.resumen_abstract }}</p>
+                    <span class="tag">DOI: {{ pub.doi }}</span>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty">Aún no hay publicaciones registradas en PostgreSQL.</div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        Comunidad Científica de Chile (CCCh) · Arquitectura Django + PostgreSQL 18 + Angular
+    </footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+﻿.pub-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; height: 100%; transition: transform 0.2s ease, border-color 0.2s ease; }
+.pub-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+.pub-header { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+.anio-badge { background: var(--cyan-primary); color: #050a14; font-weight: 700; font-size: 0.78rem; padding: 0.15rem 0.55rem; border-radius: 6px; }
+.revista { font-size: 0.83rem; color: var(--emerald-accent); font-weight: 600; }
+h3 { font-size: 1.06rem; color: var(--text-primary); }
+.autor { font-size: 0.85rem; color: var(--text-muted); }
+.autor strong { color: var(--text-secondary); }
+.abstract { font-size: 0.9rem; color: var(--text-secondary); flex-grow: 1; }
+.pub-footer { display: flex; justify-content: space-between; align-items: center; gap: 0.7rem; padding-top: 0.85rem; border-top: 1px solid rgba(148, 163, 184, 0.12); font-size: 0.8rem; }
+.doi { font-family: monospace; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; }
+.doi-btn { background: rgba(56, 189, 248, 0.14); color: var(--cyan-primary); border: 1px solid var(--border-strong); padding: 0.3rem 0.75rem; border-radius: 6px; font-weight: 600; white-space: nowrap; }
+.doi-btn:hover { background: var(--cyan-primary); color: #050a14; }

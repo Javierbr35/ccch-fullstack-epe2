@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg-main: #060913;
+  --bg-section-alt: #080c18;
+  --bg-card: #0c1222;
+  --bg-input: #0a0f1d;
+  --border-card: #182238;
+  --border-hover: #2d3f66;
+  --purple-btn: #6c63ff;
+  --purple-hover: #5a52e0;
+  --cyan-accent: #22d3ee;
+  --gradient-cta: linear-gradient(90deg, #6c63ff 0%, #22d3ee 100%);
+  --text-white: #f8fafc;
+  --text-gray: #94a3b8;
+  --text-muted: #64748b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font-family: inherit; }
