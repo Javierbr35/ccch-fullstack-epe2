@@ -36,4 +36,3 @@ Crear una base de datos vacía llamada **ccch_db** en pgAdmin 4.
 1. **Lectura (GET):** Abrir http://localhost:4200/ y verificar carga de Científicos/as y Vitrina desde PostgreSQL.
 2. **Interactividad:** Probar filtros en Ciencia Accesible, buscador en Bolsa de Trabajo, Foro y acordeón FAQ.
 3. **Escritura (POST):** Enviar formulario en Únete a la comunidad o Conversemos y verificar confirmación.
-4. **Auditoría Admin:** Ingresar a http://127.0.0.1:8000/admin/ (admin / admin123) y revisar Solicitudes de la Comunidad.
